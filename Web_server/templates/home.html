@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
+    <title>Home</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form method="post">
+                <div class="form-container-inner">
+                    {% for item in context.devices %}
+                        {% if item.value == 0 %}
+                            <div class="form-item-off">
+                                <div class="form-item-text">
+                                    <h3>Room: {{ item.name }}</h3>
+                                    <p>Status: OFF</p>
+                                </div>
+                                <div class="form-item-btn">
+                                    <button type="submit" name="update" value="{{ item.name }};1">TURN ON</button>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="form-item-on">
+                                <div class="form-item-text">
+                                    <h3>Room: {{ item.name }}</h3>
+                                    <p>Status: ON</p>
+                                </div>
+                                <div class="form-item-btn">
+                                    <button type="submit" name="update" value="{{ item.name }};0">TURN OFF</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </form>
+        </div>
+        <!-- <h1>DEVICES</h1>
+        <form method="post">
+            <div class="form-container">
+                {% for item in context.devices %}
+                    <div class="form-item">
+                        {% if item.value == 1 %}
+                            <h3>{{ item.name }}</h3>
+                            <button type="submit" class="device-on" name="update" value="{{ item.name }};0">OFF</button>
+                        {% else %}
+                            <h3>{{ item.name }}</h3>
+                            <button type="submit" class="device-off" name="update" value="{{ item.name }};1">ON</button>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </form>
+        <div class="device-container">
+            {% for item in context.devices %}
+                <div class="device-item">
+                    <p>Device: {{ item.name }}</p>
+                    <p>Status: {{ item.value }}</p>
+                </div>
+            {% endfor %}
+        </div> -->
+    </div>
+</body>
+</html>
